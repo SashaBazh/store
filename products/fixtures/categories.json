@@ -1,0 +1,1 @@
+[{"model": "products.productcategory", "pk": 2, "fields": {"name": "Игровые", "description": "Описание для игровых"}}, {"model": "products.productcategory", "pk": 3, "fields": {"name": "Офисные", "description": null}}, {"model": "products.productcategory", "pk": 4, "fields": {"name": "Домашние", "description": ""}}]
