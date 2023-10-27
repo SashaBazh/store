@@ -1,5 +1,8 @@
 {% extends 'products/base.html' %}
 {%  load static cache%}
+{%  load humanize%}
+{% load static %}
+
 
 {% block css %}
 	<link href="{% static 'vendor/css/products.css' %}" rel="stylesheet">
@@ -12,7 +15,7 @@
 
         <div class="col-lg-3">
 
-            <h1 class="my-4">Store</h1>
+            <h1 class="my-4">Категории</h1>
             <div class="list-group">
                 {% for category in categories %}
                     <a href="{% url 'products:category' category.id %}" class="list-group-item">
@@ -24,9 +27,17 @@
 
         </div>
         <!-- /.col-lg-3 -->
-
+        <br>
+        <br>
         <div class="col-lg-9">
-
+        <div class="search-form">
+            <form action="{% url 'products:search' %}" method="get">
+                <div class="input-group rounded">
+                    <input name="q" type="text" class="form-control rounded" placeholder="Поиск" aria-label="Поиск" aria-describedby="search-addon" />
+                    <button type="submit" class="btn btn-primary bg-dark rounded"><i class="fas fa-search text-white"></i></button>
+                </div>
+            </form>
+        </div>
             <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
                 <ol class="carousel-indicators">
                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -56,76 +67,106 @@
 
             <div class="row">
 
-            {% cache 30 object_list %}
                  {% for product in object_list %}
                     <div class="col-lg-4 col-md-6 mb-4">
                     <div class="card h-100">
                         <a href="#">
                             <img class="card-img-top"
                                  src="{{ product.image.url }}"
-                                 alt="">
+                                 alt=""
+                                 style="object-fit: contain; width: 100%; height: 200px;">
                         </a>
                         <div class="card-body">
-                            <h4 class="card-title">
-                                <a href="#">{{ product.name }}</a>
+                            <h4 class="card-title" style="object-fit: contain; width: 100%; height: 110px;">
+                                <a href="#" class="text-dark">{{ product.name }}</a>
                             </h4>
-                            <h5>{{ product.price }} руб. </h5>
+                            <h5>{{ product.price| intcomma }} руб. </h5>
                             <p class="card-text">{{ product.description }}</p>
                         </div>
                         <div class="card-footer text-center">
-                            <a class="btn btn-outline-success"
-                               href="{% url 'products:basket_add' product.id%}">
-                                Отправить в корзину
+                            <a class="btn btn-outline-success btn-outline-dark"
+                               href="{% url 'products:basket_add' product.id %}">
+                                Добавить в корзину
                             </a>
 
                         </div>
                     </div>
                 </div>
                 {% endfor %}
-            {% endcache %}
 
             </div>
+
+
+{#            <div class="card">#}
+{#                <img class="img1" src="{% static 'vendor/img/3.jpg' %}" alt="">#}
+{#                <div class="card-content">#}
+{#                    <h4 class="card-title">Ноут</h4>#}
+{#                </div>#}
+{#            </div>#}
+
+
+
+
+
+
+
+
+
+
+
+
 
             {% if is_paginated %}
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
                     <li class="page-item {% if not page_obj.has_previous %} disabled {% endif %}">
                         <a class="page-link"
-                           href="{% if page_obj.has_previous %} {% url 'products:paginator' page_obj.previous_page_number %} {%  else %} # {% endif %}"
-                           tabindex="-1"
-                           aria-disabled="true">
-                            ◀️
+                           href="{% if page_obj.has_previous %}?page={{ page_obj.previous_page_number }}{% if category_id %}&category={{ category_id }}{% endif %}{% else %}#{% endif %}"
+                           tabindex="-1" aria-disabled="true">
+                            <
                         </a>
                     </li>
-                    {%  for page in paginator.page_range %}
-                        <li class="page-item">
-                            <a class="page-link" href="{% url 'products:paginator' page %}">
-                            {{ page }}
-                            </a>
+                    {% for page in paginator.page_range %}
+                        <li class="page-item {% if page_obj.number == page %} active {% endif %}">
+                            <a class="page-link" href="?page={{ page }}{% if category_id %}&category={{ category_id }}{% elif q %}&q={{ q }}{% endif %}">{{ page }}</a>
                         </li>
                     {% endfor %}
-                    <li class="page-item {% if not page_obj.has_next %} disabled {% endif %} ">
+                    <li class="page-item {% if not page_obj.has_next %} disabled {% endif %}">
                         <a class="page-link"
-                           href="{% if page_obj.has_next %} {% url 'products:paginator' page_obj.next_page_number %} {%  else %} # {% endif %}">
-                            ▶️
+                           href="{% if page_obj.has_next %}?page={{ page_obj.next_page_number }}{% if category_id %}&category={{ category_id }}{% endif %}{% else %}#{% endif %}">
+                            >
                         </a>
                     </li>
                 </ul>
             </nav>
-
             {% endif %}
+            </div>
         </div>
-
     </div>
-
-</div>
 {% endblock %}
 
 {% block footer %}
-	<footer class="py-5 bg-dark">
+    <style>
+        /* CSS код для переливающегося градиента */
+
+        .py-5 {
+            background: black;
+        }
+
+        </style>
+<footer class="py-5">
     <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Store 2022</p>
+        <p class="m-0 text-center text-white"></p>
+        <div class="row">
+            <br/><br/>
+            <div class="col-md-12">
+                <p class="text-center">
+                    <a href="https://github.com/Sashaaasssss" target="_blank" class="btn-social btn-github"><i class="fab fa-github fa-3x"></i></a>
+                    <a href="https://instagram.com/sasha__bazhenov__?igshid=MzMyNGUyNmU2YQ==" target="_blank" class="btn-social btn-instagram"><i class="fab fa-instagram fa-3x"></i></a>
+                    <a href="tel:+375336684769" class="btn-social btn-phone"><i class="fas fa-phone fa-3x"></i></a>
+                </p>
+            </div>
+        </div>
     </div>
-    <!-- /.container -->
 </footer>
 {% endblock %}

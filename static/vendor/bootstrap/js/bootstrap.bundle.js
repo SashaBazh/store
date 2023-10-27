@@ -2497,7 +2497,7 @@
    * @method
    * @memberof Popper.Utils
    * @argument {String} property (camelCase)
-   * @returns {String} prefixed property (camelCase or PascalCase, depending on the vendor prefix)
+   * @returns {String} prefixed property (camelCase or PascalCase, depending on the vendor_login prefix)
    */
   function getSupportedPropertyName(property) {
     var prefixes = [false, 'ms', 'Webkit', 'Moz', 'O'];
@@ -7028,4 +7028,4 @@
   Object.defineProperty(exports, '__esModule', { value: true });
 
 })));
-//# sourceMappingURL=bootstrap.bundle.js.map
+//# sourceMappingURL=bootstrap_login.bundle.js.map

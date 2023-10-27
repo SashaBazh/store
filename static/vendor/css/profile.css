@@ -1,3 +1,40 @@
 body {
     padding-top: 56px;
 }
+
+.form-control {
+  border: 1px solid #000;
+}
+
+.custom-file-label{
+    border: 1px solid #000;
+}
+
+.btn {
+    color: #fff;
+    background-color: black;
+    border: 1px solid black;
+    transition: all 0.2s;
+}
+
+.btn:hover {
+    background-color: gray;
+    color: #fff;
+}
+
+
+
+.img-thumbnail {
+    border: none;
+    border-radius: 50%;
+}
+
+  .text-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .fas.fa-trash {
+    color: black;
+  }

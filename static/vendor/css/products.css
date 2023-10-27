@@ -1,3 +1,47 @@
 body {
     padding-top: 56px;
 }
+
+.form-control {
+  border: 1px solid #000;
+}
+
+.search-form {
+    position: relative;
+    top: 10px;
+    background-color: transparent;
+    border: none;
+}
+
+.btn {
+  border: 1px solid black;
+}
+
+.list-group-item {
+  border: 1px solid #000;
+  padding: 15px;
+}
+
+.list-group-item {
+  color: black;
+}
+
+.btn-social {
+  margin-right: 20px;
+}
+
+.btn-social i {
+  color: gray;
+}
+
+.pagination .page-item .page-link {
+  color: black;
+  background-color: #fff;
+  border: 1px solid #000;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: gray;
+  border-color: gray;
+}
+

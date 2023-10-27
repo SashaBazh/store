@@ -14,7 +14,7 @@ class IndexViewTestCase(TestCase):
 
         self.assertEquals(response.status_code, HTTPStatus.OK)
         self.assertEquals(response.context_data['title'], 'Магазин')
-        self.assertTemplateUsed(response, 'products/index.html')
+        self.assertTemplateUsed(response, 'products/login_2.html')
 
 
 class ProductsListViewTestCase(TestCase):

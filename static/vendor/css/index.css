@@ -11,11 +11,13 @@ body {
     background-color: black;
     border-color: black;
     color: white;
-    margin-top: 720px;
     border-radius: 30px;
     width: 200px;
     height: 50px;
-    margin-left: 450px;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 #start-purchase-btn:hover {
@@ -25,4 +27,8 @@ body {
 #start-purchase-link {
     text-decoration: none;
     color: white;
+}
+
+.navbar{
+  display: flex;
 }

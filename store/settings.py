@@ -12,6 +12,8 @@
 
 
 from pathlib import Path
+from django.core.mail.backends.console import EmailBackend as ConsoleEmailBackend
+from django.core.mail import send_mail
 
 import environ
 
@@ -208,7 +210,7 @@ LOGOUT_REDIRECT_URL = '/'
 # Sending emails
 
 # if DEBUG:
-#     EMAIL_BACKEND = 'django.core.mail.backends.consoleEmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # else:
 EMAIL_HOST = env('EMAIL_HOST')
 EMAIL_PORT = env('EMAIL_PORT')
